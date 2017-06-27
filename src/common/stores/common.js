@@ -5,8 +5,7 @@ import { extendObservable } from 'mobx'
  */
 export default class CommonStore {
 
-  constructor(_data, state = {}) {
-    this._data = _data
+  constructor(state = {}) {
     extendObservable(this, {
       title: '加载中...',
     }, state)

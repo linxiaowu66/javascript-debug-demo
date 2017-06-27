@@ -6,4 +6,4 @@ export const stores = (state = {}) => ({
 })
 
 // Initialize actions and state
-export default global.__data ? stores(global.__data) : {}
+export default stores({})

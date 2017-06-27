@@ -7,7 +7,7 @@ export default class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      input: '',
+      input: '这是测试的输出',
     }
   }
 
@@ -35,7 +35,7 @@ export default class Register extends Component {
 
     return (
       <div className="test">
-        <input placeholder="请输入任意字符" onChange={() => this.handleChange()} />
+        <input placeholder="请输入任意字符" onChange={this.handleChange} />
         <p>{input}</p>
       </div>
     )
