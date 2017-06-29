@@ -7,7 +7,6 @@ export function fetchJSON(url, params) {
     ...params,
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-      'X-CSRF-Token': global.__data.csrfToken,
       ...params.headers,
     },
   }
@@ -61,59 +60,3 @@ export const fetchJSONByPost = url => query => {
   return fetchJSON(buildUrl, params)
 }
 
-export const fetchJSONByGet = url => (query) => {
-  const params = {
-    method: 'GET',
-  }
-  let getQuery = '?'
-  if (query) {
-    // eslint-disable-next-line
-    for (name in query) {
-      getQuery += `${name}=${query[name]}&`;
-    }
-  }
-  const buildUrl = buildURL(url, query)
-  const getUrl = buildUrl + (query ? getQuery.substring(0, getQuery.length - 1) : '');
-  return fetchJSON(getUrl, params)
-}
-
-export const fetchJSONByPut = url => (data) => {
-  const params = {
-    method: 'PUT',
-    body: buildParams(data),
-  }
-  const buildUrl = buildURL(url, data)
-  return fetchJSON(buildUrl, params)
-}
-
-export const fetchJSONByDelete = url => (data) => {
-  const params = {
-    method: 'DELETE',
-    body: buildParams(data),
-  }
-  const buildUrl = buildURL(url, data)
-  return fetchJSON(buildUrl, params)
-}
-
-export const fetchJSONStringByPost = url => (query) => {
-  const params = {
-    method: 'POST',
-    body: query,
-    headers: {
-      'Content-Type': 'application/json;charset=UTF-8;',
-    },
-  }
-  return fetchJSON(url, params)
-}
-
-export const fetchUrl = url => (fetch(url))
-
-export const fetchJSONByPostFormData = url => (query) => {
-  const params = {
-    method: 'POST',
-    body: query,
-    credentials: 'include',
-  }
-  const buildUrl = buildURL(url, query)
-  return fetch(buildUrl, params)
-}

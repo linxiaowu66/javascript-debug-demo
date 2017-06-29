@@ -3,8 +3,6 @@
 /* eslint no-param-reassign: 0 */
 /* eslint global-require: 0 */
 
-import Debug from 'debug'
-
 module.exports = {
   async uploadString(req, res) {
     const { string } = req.body
@@ -17,10 +15,10 @@ module.exports = {
 
       return res.send({
         status: 1,
-        data
+        data: '提交成功'
       })
     } catch (err) {
-      logger.error('Controller failure: ', err)
+      console.error('Controller failure: ', err)
       return res.status(503).json({
         status: 0,
         msg: '系统异常，请稍后再试'

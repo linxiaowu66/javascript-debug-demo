@@ -15,17 +15,27 @@ html{
   }*/
 }
 
-.container {
-	position: absolute;
-	top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.page_content{
-	height: 100vh;
-	box-sizing: border-box;
-	overflow-y: scroll;
-	font-size: 14px;
+.test {
+	width: 100%;
+  height: 200px;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  input{
+    width: 300px;
+    font-size: 18px;
+    border: 1px solid #119d55;
+  }
+  p{
+    padding: 10px;
+  }
+  div{
+    cursor: pointer;
+    width: 119px;
+    margin: 0 auto;
+    border: 1px solid #119d55;
+    border-radius: 4px;
+    color: #119d55;
+  }
 }

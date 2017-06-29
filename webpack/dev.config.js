@@ -4,7 +4,7 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const assetsPath = path.resolve(__dirname, '../static/dist');
-const host = 'localhost';
+const host = 'localhost'
 const port = 3001
 
 // https://github.com/halt-hammerzeit/webpack-isomorphic-tools
@@ -34,27 +34,29 @@ const babelLoaderQuery = Object.assign({}, babelrcObjectDevelopment, babelrcObje
 delete babelLoaderQuery.env;
 
 module.exports = {
-    devtool: 'inline-source-map',
+    // devtool: 'source-map',
     context: path.resolve(__dirname, '..'),
     entry: {
-      'main': [
-        './src/client/index.js',
-      ],
-      'vendor': [
-          'babel-polyfill/dist/polyfill.min.js',
-          'react',
-          'react-dom',
-          'react-router',
-          'whatwg-fetch',
-          'mobx',
-          'mobx-react'
-      ]
+        'main': [
+            './src/client/index.js',
+        ],
+        'vendor': [
+            'babel-polyfill/dist/polyfill.min.js',
+            'react-hot-loader/patch',
+            'webpack-hot-middleware/client?path=http://localhost:3001/__webpack_hmr',
+            'react',
+            'react-dom',
+            'react-router',
+            'whatwg-fetch',
+            'mobx',
+            'mobx-react',
+        ]
     },
     output: {
         path: assetsPath,
         filename: '[name]-[hash].js',
         chunkFilename: '[name]-[chunkhash].js',
-        publicPath: 'http://' + host + ':' + port + '/dist/',
+        publicPath: 'http://localhost:3001/dist/',
     },
     module: {
         rules: [
@@ -93,14 +95,6 @@ module.exports = {
             'node_modules',
         ],
         extensions: ['.json', '.web.js', '.js', '.jsx'],
-        alias: {
-            container: path.resolve(__dirname, '..') + '/src/common/container',
-            components: path.resolve(__dirname, '..') + '/src/common/components',
-            apis: path.resolve(__dirname, '..') + '/src/common/services/api',
-            utils: path.resolve(__dirname, '..') + '/src/common/utils',
-            constants: path.resolve(__dirname, '..') + '/src/common/constants',
-            static: path.resolve(__dirname, '..') + '/static',
-        },
     },
     plugins: [
         // hot reload

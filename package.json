@@ -6,8 +6,7 @@
   "scripts": {
     "start": "concurrently --kill-others \"npm run watch-client\" \"npm run start-server-dev\"",
     "watch-client": "better-npm-run watch-client",
-    "start-server-dev": "better-npm-run start-server-dev",
-    "build": "better-npm-run build"
+    "start-server-dev": "better-npm-run start-server-dev"
   },
   "betterScripts": {
     "watch-client": {
@@ -19,19 +18,12 @@
       }
     },
     "start-server-dev": {
-      "command": "node --inspect=6666 ./bin/server.js",
+      "command": "node --inspect ./bin/server.js",
       "env": {
         "NODE_ENV": "development"
       }
-    },
-    "build": {
-      "command": "webpack --config webpack/prod.config.js",
-      "env": {
-        "NODE_ENV": "production"
-      }
     }
   },
-  "author": "linxiaowu66",
   "license": "MIT",
   "dependencies": {
     "autoprefixer": "^6.7.7",

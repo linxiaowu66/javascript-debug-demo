@@ -1,13 +1,14 @@
 // 注册页
 import React, { Component } from 'react'
 import { inject } from 'mobx-react'
+import { uploadString } from '../../apis'
 
 @inject('commonStore')
-export default class Register extends Component {
+export default class Test extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      input: '这是测试的输出',
+      str: '这是测试的输出',
     }
   }
 
@@ -23,20 +24,31 @@ export default class Register extends Component {
   }
 
 
-  handleChange = (val) => {
+  handleChange = (event) => {
     this.setState({
-      input: val,
+      str: event.target.value,
+    })
+  }
+
+  handleSubmit = () => {
+    const { str } = this.state
+
+    uploadString({ string: str})
+    .then(resp => resp.json())
+    .then((resp) => {
+      alert('提交成功')
     })
   }
 
 
   render() {
-    const { input } = this.state
+    const { str } = this.state
 
     return (
       <div className="test">
         <input placeholder="请输入任意字符" onChange={this.handleChange} />
-        <p>{input}</p>
+        <p>{str}</p>
+        <div onClick={this.handleSubmit}>点我提交字符串</div>
       </div>
     )
   }
